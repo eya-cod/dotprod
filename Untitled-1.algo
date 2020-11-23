@@ -1,0 +1,76 @@
+PROCEDURE dot_product(VAR v1,v2 : ARRAY_OF FLOAT[3])
+VAR
+    i:INTEGER;
+    ps:FLOAT;
+BEGIN
+    ps:=0;
+    FOR i FROM 0 TO 2 STEP 1  DO
+        ps:=ps+v1[i]*v2[i];
+    END_FOR
+    IF (ps=0) THEN
+        Write(v1 ,'et', v2,'sont orth');
+        ELSE
+            Write(v1,'et',v2,'ne sont pas orth');
+        
+    END_IF
+END
+
+FUNCTION dot_productFunction(v1,v2 : ARRAY_OF FLOAT[3]) : FLOAT;
+VAR
+    i:INTEGER;
+    ps:FLOAT;
+BEGIN
+    FOR i FROM 0 TO 2 STEP 1  DO
+        ps := ps + (v1[i]*v2[i]);
+    END_FOR
+    RETURN ps;
+END
+//algo using procedure
+ALGORITHM SCALAIRE
+VAR
+    n,i ,j:FLOAT;
+    
+BEGIN
+    Write ('numb of paires');
+    Read(n);
+    FOR i FROM 0 TO n-1 STEP 1  DO
+    FOR j FROM 0 TO 2 STEP 1  DO
+        Write('give',j+1,'element of v1');
+        Read v1[j];
+    END_FOR
+    FOR j FROM 0 TO 2 STEP 1  DO
+    Write('give',j+1,'element of v2');
+        Read v2[j];
+    
+    END_FOR
+
+    dot_product(v1,v2); 
+    END_FOR
+END
+//algo with function
+ALGORITHM SCALAIRE
+VAR
+    n,i ,j,x:FLOAT;
+    
+BEGIN
+    Write ('numb of paires');
+    Read(n);
+    FOR i FROM 0 TO n-1 STEP 1  DO
+    
+    FOR j FROM 0 TO 2 STEP 1  DO
+        Write('give',j+1,'element of v1');
+        Read v1[j];
+    END_FOR
+    FOR j FROM 0 TO 2 STEP 1  DO
+    Write('give',j+1,'element of v2');
+        Read v2[j];
+
+    END_FOR
+    x:= dot_productFunction;
+    IF (x=0) THEN
+        write(v1 ,'et', v2,'sont orth');
+        ELSE
+        Write(v1,'et',v2,'ne sont pas orth');
+    END_IF
+    END_FOR
+END
